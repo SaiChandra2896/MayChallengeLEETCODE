@@ -67,26 +67,35 @@ const isCousins = (root, x, y) => {
     let foundy = false;
     let size = 0;
 
+    //start with node in the queue
     queue.push(node);
     while (queue.length) {
         foundx = false;
         foundy = false;
+
+        //store the length in a variable as we are manipulating the size of queue using queue.shift(); 
         size = queue.length;
         //iterate at the queue as the queue contains the nodes which are at the same level;
         for (let i = 0; i < size; i++) {
             //get the first inserted node from the queue
             node = queue.shift();
 
+            //check for the the children if they are children of the same node then we have to return false
             if (node.left && node.right) {
                 if ((node.left.val === x && node.right.val == y) || (node.left.val === y && node.right.val === x)) {
                     return false;
                 }
             }
+
+            //if we find the value in the node
             if (node.val === x) foundx = true;
             if (node.val === y) foundy = true;
+
+            //if we did not find the value then we have to push left and right nodes of the present node which is according to BFS.
             if (node.left) queue.push(node.left);
             if (node.right) queue.push(node.right);
         }
+        //after looping if we find the values then return true
         if (foundx && foundy) return true;
     }
     return false;

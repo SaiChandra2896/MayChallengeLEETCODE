@@ -57,9 +57,10 @@ Each node has a unique integer value from 1 to 100.
 /*
 I used Breadth First approach as it traverses through one level each time and the cousins also lie in the same level.
 
-Cousins: The nodes which lie at same level with different patrnts.
+
 */
 
+//Cousins: The nodes which lie at same level with different patrnts.
 const isCousins = (root, x, y) => {
     let queue = [];
     let node = root;
